@@ -1,5 +1,6 @@
 package com.practice.student_course_system.courses
 
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class CourseController(private val courseService: CourseService) {
 
     @PostMapping
-    fun create(@RequestBody dto: CourseDTO): ResponseEntity<Course> {
+    fun create(@RequestBody @Valid dto: CourseDTO): ResponseEntity<Course> {
         val saved = courseService.createCourse(dto)
         return ResponseEntity.status(HttpStatus.CREATED).body(saved)
     }
