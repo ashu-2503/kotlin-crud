@@ -1,5 +1,8 @@
 package com.practice.student_course_system.courses
 
+import org.springframework.stereotype.Service
+
+@Service
 class CourseServiceImpl(private val courseRepository: CourseRepository) : CourseService {
 
     override fun createCourse(dto: CourseDTO): Course {
