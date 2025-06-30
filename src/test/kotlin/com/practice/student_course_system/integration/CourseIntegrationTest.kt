@@ -13,8 +13,8 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
 import org.assertj.core.api.Assertions.assertThat
+import org.springframework.test.web.servlet.get
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -28,6 +28,7 @@ class CourseIntegrationTest(
     fun setUp() {
         courseRepository.deleteAll()
     }
+    val id = 1L
 
     @Test
     fun `should create a course and return it`() {
@@ -48,7 +49,19 @@ class CourseIntegrationTest(
     }
 
     @Test
-    fun `should fetch all courses`() {
-
+    fun `should fetch course by id`() {
+        val savedCourse = courseRepository.save(
+            Course(title = "Spring Boot", description = "Learn Backend")
+        )
+        val id = savedCourse.id!!
+        val result = mockMvc.get("/courses/$id") {
+            contentType = MediaType.APPLICATION_JSON
+        }.andExpect {
+            status { isOk() }
+            content { contentType(MediaType.APPLICATION_JSON) }
+            jsonPath("$.id") { value(id) }
+            jsonPath("$.title") { value("Spring Boot") }
+            jsonPath("$.description") { value("Learn Backend") }
+        }
     }
 }

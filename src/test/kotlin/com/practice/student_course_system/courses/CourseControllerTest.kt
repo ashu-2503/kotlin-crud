@@ -85,5 +85,4 @@ class CourseControllerTest {
             .andExpect(jsonPath("$.title").value("Kotlin Basics"))
             .andExpect(jsonPath("$.description").value("Intro to Kotlin"))
     }
-
 }
