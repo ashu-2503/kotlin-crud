@@ -28,7 +28,6 @@ class CourseIntegrationTest(
     fun setUp() {
         courseRepository.deleteAll()
     }
-    val id = 1L
 
     @Test
     fun `should create a course and return it`() {

@@ -31,6 +31,14 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+	// Cucumber + JUnit
+	testImplementation("io.cucumber:cucumber-java:7.14.0")
+	testImplementation("io.cucumber:cucumber-spring:7.14.0")
+	testImplementation("io.cucumber:cucumber-junit:7.14.0")
+//	testImplementation("io.cucumber:cucumber-kotlin:7.14.0")
+	// JUnit platform runner for Cucumber
+	testImplementation("org.junit.platform:junit-platform-suite:1.10.0")
+	testImplementation("io.cucumber:cucumber-junit-platform-engine:7.14.0")
 }
 
 kotlin {
